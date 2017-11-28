@@ -1,3 +1,4 @@
+import java.util.*;
 /**
  * Class printing out the intersection of two sorted arrays.
  *
@@ -68,6 +69,25 @@ public class IntersectionOfTwoSortedArray {
 	 * @return the intersection of the two arrays, empty array is no intersection
 	 */
 	public static int[] intersection(final int[] array1, final int[] array2) {
-		return new int[0];
+		ArrayList<Integer> common = new ArrayList<Integer>();
+		int i = 0;
+		int j = 0;
+		while ((i<array1.length) && (j<array2.length)) {
+			if (array1[i] == array2[j]) {
+				common.add(array1[i]);
+				i++;
+				j++;
+			} else if (array1[i] > array2[j]) {
+				j++;
+			} else {
+				i++;
+			}
+		}
+		int[] intersection = new int[common.size()];
+		for (int x = 0; x < common.size(); x++) {
+			intersection[x] = common.get(x);
+		}
+		return intersection;
 	}
 }
+
